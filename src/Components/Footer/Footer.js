@@ -4,7 +4,7 @@ import React from "react";
 export default function Footer() {
   return (
     <footer>
-      <div className="footer-items">
+      {/* <div className="footer-items">
         <h3>Contact us</h3>
 
         <ul>
@@ -17,7 +17,7 @@ export default function Footer() {
             &nbsp; store.store@gmail.com
           </li>
         </ul>
-      </div>
+      </div> */}
 
       <div className="footer-bottom">Copyright &copy; OUR STORE 2023</div>
     </footer>
