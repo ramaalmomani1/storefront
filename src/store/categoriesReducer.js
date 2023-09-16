@@ -22,15 +22,18 @@ export const catReducer = (state = CatinitState, action) => {
   const { type, paylod } = action;
   switch (type) {
     case "activeCat":
-      return;
-      default:
-        return state
+      return {
+        ...state,
+        activeCategory: paylod,
+      };
+    default:
+      return state;
   }
 };
 
 export const activeCat = (name) => {
-    return {
-      type: 'activeCat',
-      payload: name
-    }
-  }
+  return {
+    type: "activeCat",
+    payload: name,
+  };
+};
