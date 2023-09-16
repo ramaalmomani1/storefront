@@ -1,10 +1,10 @@
 import { combineReducers, createStore } from "redux";
 import { catReducer } from "./categoriesReducer";
-
-// const reducers = combineReducers({catReducer,proReducer})
+import { proReducer } from "./productsReducer";
+const reducers = combineReducers({ catReducer, proReducer });
 
 function store() {
-  return createStore(catReducer);
+  return createStore(reducers);
 }
 
 export default store();

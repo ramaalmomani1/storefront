@@ -1,4 +1,4 @@
-const CatinitState = {
+const CatInitState = {
   categories: [
     {
       normalizedName: "Electronics",
@@ -18,7 +18,7 @@ const CatinitState = {
 
 // create a reducer
 
-export const catReducer = (state = CatinitState, action) => {
+export const catReducer = (state = CatInitState, action) => {
   const { type, paylod } = action;
   switch (type) {
     case "activeCat":
