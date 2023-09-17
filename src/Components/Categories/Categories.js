@@ -1,16 +1,22 @@
-import * as React from "react";
+import React from "react";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
 import { connect } from "react-redux";
 import { activeCat } from "../../store/categoriesReducer";
+import { selectedPro } from "../../store/productsReducer";
 
 function Categories(props) {
-  console.log(props);
+  const { activeCategory, activeCat, selectedPro } = props;
+
+  const handleClick = (category) => {
+    activeCat(category);
+    selectedPro(category);
+  };
+
   return (
     <div>
       <h3>Browse our Categories</h3>
-
       <Box
         sx={{
           display: "flex",
@@ -23,12 +29,12 @@ function Categories(props) {
       ></Box>
       {props.active.categories.map((item) => (
         <ButtonGroup variant="text" aria-label="text button group">
-          <Button onClick={() => props.activeCat(item.normalizedName)}>
-            {" "}
-            {console.log('tessstt', item.normalizedName)}
+          <Button
+            onClick={() => handleClick(item.normalizedName)}
+            variant={item.normalizedName === activeCategory ? "contained" : "outlined"}
+          >
             {item.normalizedName}
           </Button>
-          {/* <Button>Food</Button> */}
         </ButtonGroup>
       ))}
     </div>
@@ -36,9 +42,10 @@ function Categories(props) {
 }
 
 const mapStateToProps = (state) => ({
+  activeCategory: state.catReducer.activeCategory,
   active: state.catReducer,
 });
 
-const mapDispatchToProps = { activeCat };
+const mapDispatchToProps = { activeCat, selectedPro };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);
