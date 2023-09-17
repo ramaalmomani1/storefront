@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -9,12 +9,16 @@ import { connect } from "react-redux";
 import "./products.css";
 
 function Products(props) {
-  console.log("this is from product", props.productDetails.products);
+  const { products, activeCategory } = props;
+  const filteredProducts = activeCategory
+    ? products.filter((item) => item.category === activeCategory)
+    : products;
+
   return (
     <div>
-      {props.productDetails.products.map((item) => (
+      {filteredProducts.map((item) => (
         <div key={item.id} className="card-container">
-          <Card sx={{ width: 345, height: 400 }}> {/* Set specific width and height */}
+          <Card sx={{ width: 345, height: 400 }}>
             <CardMedia
               sx={{ height: 140 }}
               image={item.image}
@@ -46,7 +50,8 @@ function Products(props) {
 }
 
 const mapStateToProps = (state) => ({
-  productDetails: state.proReducer,
+  products: state.proReducer.finalProducts,
+  activeCategory: state.catReducer.activeCategory,
 });
 
 export default connect(mapStateToProps)(Products);

@@ -7,7 +7,7 @@ import { activeCat } from "../../store/categoriesReducer";
 import { selectedPro } from "../../store/productsReducer";
 
 function Categories(props) {
-  const { activeCategory, activeCat, selectedPro } = props;
+  const { activeCat, selectedPro } = props;
 
   const handleClick = (category) => {
     activeCat(category);
@@ -20,30 +20,32 @@ function Categories(props) {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
           "& > *": {
             m: 1,
           },
         }}
-      ></Box>
-      {props.active.categories.map((item) => (
-        <ButtonGroup variant="text" aria-label="text button group">
-          <Button
-            onClick={() => handleClick(item.normalizedName)}
-            variant={item.normalizedName === activeCategory ? "contained" : "outlined"}
+      >
+        {props.categories.map((item) => (
+          <ButtonGroup
+            key={item.normalizedName}
+            variant="text"
+            aria-label="text button group"
           >
-            {item.normalizedName}
-          </Button>
-        </ButtonGroup>
-      ))}
+            <Button onClick={() => handleClick(item.normalizedName)}>
+              {item.displayName}
+            </Button>
+          </ButtonGroup>
+        ))}
+      </Box>
     </div>
   );
 }
 
 const mapStateToProps = (state) => ({
   activeCategory: state.catReducer.activeCategory,
-  active: state.catReducer,
+  categories: state.catReducer.categories,
 });
 
 const mapDispatchToProps = { activeCat, selectedPro };
