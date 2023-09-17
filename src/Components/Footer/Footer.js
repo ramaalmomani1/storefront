@@ -1,25 +1,25 @@
-import { Link } from "@mui/material";
 import React from "react";
+import { Typography, Container } from "@mui/material";
 
-export default function Footer() {
+const Footer = () => {
+  const footerStyle = {
+    backgroundColor: "#333",
+    color: "#fff",
+    padding: "16px 0",
+    position: "fixed",
+    bottom: 0,
+    width: "100%",
+  };
+
   return (
-    <footer>
-      {/* <div className="footer-items">
-        <h3>Contact us</h3>
-
-        <ul>
-          <li>
-            <i className="fa fa-phone" aria-hidden="true"></i>&nbsp; (06) 400
-            0755
-          </li>
-          <li>
-            <i className="fa fa-envelope" aria-hidden="true"></i>
-            &nbsp; store.store@gmail.com
-          </li>
-        </ul>
-      </div> */}
-
-      <div className="footer-bottom">Copyright &copy; OUR STORE 2023</div>
+    <footer style={footerStyle}>
+      <Container maxWidth="md">
+        <Typography variant="h6" align="center">
+          &copy; 2023 OUR STORE
+        </Typography>
+      </Container>
     </footer>
   );
-}
+};
+
+export default Footer;

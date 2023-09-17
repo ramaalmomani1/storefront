@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
 import { connect } from "react-redux";
+import { activeCat } from "../../store/categoriesReducer";
 
 function Categories(props) {
   console.log(props);
@@ -20,10 +21,14 @@ function Categories(props) {
           },
         }}
       ></Box>
-      {props.activeCat.map((item) => (
+      {props.active.categories.map((item) => (
         <ButtonGroup variant="text" aria-label="text button group">
-          <Button onClick={()=> props.}> {item.displayName}</Button>
-          <Button>Food</Button>
+          <Button onClick={() => props.activeCat(item.normalizedName)}>
+            {" "}
+            {console.log('tessstt', item.normalizedName)}
+            {item.normalizedName}
+          </Button>
+          {/* <Button>Food</Button> */}
         </ButtonGroup>
       ))}
     </div>
@@ -31,7 +36,9 @@ function Categories(props) {
 }
 
 const mapStateToProps = (state) => ({
-  activeCat: state.catReducer,
+  active: state.catReducer,
 });
 
-export default connect(mapStateToProps)(Categories);
+const mapDispatchToProps = { activeCat };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

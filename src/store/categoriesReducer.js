@@ -19,12 +19,12 @@ const CatInitState = {
 // create a reducer
 
 export const catReducer = (state = CatInitState, action) => {
-  const { type, paylod } = action;
+  const { type, payload } = action;
   switch (type) {
     case "activeCat":
       return {
         ...state,
-        activeCategory: paylod,
+        activeCategory: payload,
       };
     default:
       return state;

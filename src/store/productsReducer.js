@@ -64,11 +64,11 @@ const proInitState = {
 };
 
 export const proReducer = (state = proInitState, action) => {
-  let { type, paylod } = action;
+  let { type, payload } = action;
   let selectedPro = [];
   switch (type) {
     case "productsList ":
-      state.products.filter((pro) => pro.category === paylod);
+      state.products.filter((pro) => pro.category === payload);
       return {
         ...state,
         finalProducts: selectedPro,
