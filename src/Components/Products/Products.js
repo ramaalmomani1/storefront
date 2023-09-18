@@ -6,13 +6,19 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { connect } from "react-redux";
+import { add } from "../../store/cartReducer";
 import "./products.css";
 
 function Products(props) {
-  const { products, activeCategory } = props;
+  // console.log(props.products);
+  const { products, activeCategory, add } = props;
   const filteredProducts = activeCategory
     ? products.filter((item) => item.category === activeCategory)
     : products;
+
+  function handleClick() {
+    add();
+  }
 
   return (
     <div>
@@ -39,7 +45,9 @@ function Products(props) {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">ADD TO CART</Button>
+              <Button size="small" onClick={() => handleClick()}>
+                ADD TO CART
+              </Button>
               <Button size="small">VIEW DETAILS</Button>
             </CardActions>
           </Card>
@@ -52,6 +60,9 @@ function Products(props) {
 const mapStateToProps = (state) => ({
   products: state.proReducer.finalProducts,
   activeCategory: state.catReducer.activeCategory,
+  cart: state.cartReducer.count,
 });
 
-export default connect(mapStateToProps)(Products);
+const mapDispatchToProps = { add };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
