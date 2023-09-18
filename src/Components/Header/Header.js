@@ -3,7 +3,7 @@ import { Typography, AppBar, Toolbar, Box } from "@mui/material";
 import { connect } from "react-redux";
 
 const Header = (props) => {
-  console.log('this is frome header', props)
+  // console.log('this is frome header', props)
   const headerStyle = {
     backgroundColor: "#333",
     color: "#fff",
