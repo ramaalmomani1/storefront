@@ -74,15 +74,57 @@ export const proReducer = (state = proInitState, action) => {
         ...state,
         finalProducts: selectedProducts,
       };
+    case "AddToCart":
+      const removeFromStock = state.finalProducts.map((product) => {
+        if (product.name === payload.name) {
+          return {
+            ...product,
+            inStock: product.inStock - 1,
+          };
+        }
+        return product;
+      });
+      return {
+        ...state,
+        finalProducts: removeFromStock,
+      };
+      case "removeFromCart":
+        const addToStock = state.finalProducts.map((product) => {
+          if (product.name === payload.name) {
+            return {
+              ...product,
+              inStock: product.inStock + 1,
+            };
+          }
+          return product;
+        });
+        return {
+          ...state,
+          finalProducts: addToStock,
+        };
+
     default:
       return state;
   }
 };
 
-
 export const selectedPro = (name) => {
   return {
     type: "productsList",
     payload: name,
+  };
+};
+
+export const removeFromStock = (product) => {
+  return {
+    type: "AddToCart",
+    payload: product,
+  };
+};
+
+export const addToStock = (product) => {
+  return {
+    type: "removeFromCart",
+    payload: product,
   };
 };
