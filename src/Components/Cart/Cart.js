@@ -1,9 +1,9 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Stack from "@mui/material/Stack";
 import { connect } from "react-redux";
 import { remove } from "../../store/cartReducer";
+import "./Cart.css"; 
 
 function Cart(props) {
   const { remove } = props;
@@ -11,25 +11,20 @@ function Cart(props) {
   function handleClick(product) {
     remove(product);
   }
+
   return (
     <div>
-      {props.cart.cartProducts.map((product, i) => {
-        // {
-        //   console.log("this is from cart", product);
-        // }
-        return (
-          <div key={i}>
-            <p>{product.name}</p>
-            <Stack direction="row" spacing={2}>
-              <Button
-                onClick={() => handleClick(product)}
-                variant="outlined"
-                startIcon={<DeleteIcon />}
-              ></Button>
-            </Stack>
-          </div>
-        );
-      })}
+      {props.cart.cartProducts.map((product, i) => (
+        <div key={i} className="product-container">
+          <p>{product.name}</p>
+          <Button
+            onClick={() => handleClick(product)}
+            variant="outlined"
+            style={{ color: "black", borderColor: "black" }}
+            startIcon={<DeleteIcon style={{ verticalAlign: "middle" }} />} // Center the icon vertically
+          ></Button>
+        </div>
+      ))}
     </div>
   );
 }

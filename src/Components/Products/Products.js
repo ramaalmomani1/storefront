@@ -21,10 +21,10 @@ function Products(props) {
   }
 
   return (
-    <div>
+    <div className="cards-container">
       {filteredProducts.map((item) => (
         <div key={item.id} className="card-container">
-          {/* { console.log('itemmmmmmmmm',item)} */}
+          {console.log("itemmmmmmmmm", item)}
           <Card sx={{ width: 345, height: 400 }}>
             <CardMedia
               sx={{ height: 140 }}
