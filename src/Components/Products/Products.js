@@ -7,10 +7,11 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { connect } from "react-redux";
 import { add } from "../../store/cartReducer";
+
 import "./products.css";
 
 function Products(props) {
-  console.log(props);
+  // console.log(props);
   const { products, activeCategory, add } = props;
   const filteredProducts = activeCategory
     ? products.filter((item) => item.category === activeCategory)
@@ -24,7 +25,7 @@ function Products(props) {
     <div className="cards-container">
       {filteredProducts.map((item) => (
         <div key={item.id} className="card-container">
-          {console.log("itemmmmmmmmm", item)}
+          {/* {console.log("itemmmmmmmmm", item)} */}
           <Card sx={{ width: 345, height: 400 }}>
             <CardMedia
               sx={{ height: 140 }}

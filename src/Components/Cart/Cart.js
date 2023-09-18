@@ -21,7 +21,7 @@ function Cart(props) {
             onClick={() => handleClick(product)}
             variant="outlined"
             style={{ color: "black", borderColor: "black" }}
-            startIcon={<DeleteIcon style={{ verticalAlign: "middle" }} />} // Center the icon vertically
+            startIcon={<DeleteIcon style={{ verticalAlign: "middle" }} />} 
           ></Button>
         </div>
       ))}
