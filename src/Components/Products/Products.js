@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { add } from "../../store/cartReducer";
+import { fetchProducts } from "../../store/productsReducer";
 
 import "./products.css";
 
@@ -21,11 +22,19 @@ function Products(props) {
     add(product);
   }
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (activeCategory) {
+      dispatch(fetchProducts(activeCategory));
+    }
+  }, [activeCategory, dispatch]);
+
   return (
     <div className="cards-container">
       {filteredProducts.map((item) => (
         <div key={item.id} className="card-container">
-          {/* {console.log("itemmmmmmmmm", item)} */}
+          {console.log("itemmmmmmmmm", item)}
           <Card sx={{ width: 345, height: 400 }}>
             <CardMedia
               sx={{ height: 140 }}

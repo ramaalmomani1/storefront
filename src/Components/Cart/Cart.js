@@ -1,9 +1,9 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { remove } from "../../store/cartReducer";
-import "./Cart.css"; 
+import "./Cart.css";
 
 function Cart(props) {
   const { remove } = props;
@@ -21,7 +21,7 @@ function Cart(props) {
             onClick={() => handleClick(product)}
             variant="outlined"
             style={{ color: "black", borderColor: "black" }}
-            startIcon={<DeleteIcon style={{ verticalAlign: "middle" }} />} 
+            startIcon={<DeleteIcon style={{ verticalAlign: "middle" }} />}
           ></Button>
         </div>
       ))}
