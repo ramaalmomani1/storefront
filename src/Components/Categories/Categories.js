@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
-import { connect } from "react-redux";
-import { activeCat } from "../../store/categoriesReducer";
+import { connect, useDispatch } from "react-redux";
+import { activeCat, fetchCategories } from "../../store/categoriesReducer";
 import { selectedPro } from "../../store/productsReducer";
 
 function Categories(props) {
@@ -13,6 +13,11 @@ function Categories(props) {
     activeCat(category);
     selectedPro(category);
   };
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   return (
     <div>
@@ -29,12 +34,13 @@ function Categories(props) {
       >
         {props.categories.map((item) => (
           <ButtonGroup
-            key={item.normalizedName}
+            key={item.name}
             variant="text"
             aria-label="text button group"
           >
-            <Button onClick={() => handleClick(item.normalizedName)}>
-              {item.displayName}
+            <Button onClick={() => handleClick(item.name)}>
+              {console.log(item)}
+              {item.name}
             </Button>
           </ButtonGroup>
         ))}
